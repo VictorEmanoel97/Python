@@ -7,22 +7,20 @@ class Estudante:
     def __str__(self):
          return f"Nome: {self.nome}, Cidade: {self.cidade}, Transporte: {self.transporte}"
 def adicionar_cadastro():
-    nome_user = input("digite seu nome:\n")
-    moradia_user = input("onde você mora?\n")
-    transporte_user = input("você tem tansporte pra vir a escola?\n").lower()
-    if transporte_user =="sim":
-        transporte_tipo = input("qual o tipo de transporte?\n")
-        estudante_obj = Estudante(nome_user, moradia_user, transporte_tipo)
-        informacoes.append(estudante_obj) 
-        print("Obrigado por responder o questionario")
-    elif transporte_user == "nao":
+    respostas_validas = ["no", "nao", "n", "não"]
+    resposta_transporte = input("você tem tansporte pra vir a escola?(sim/não)\n").lower()
+    if resposta_transporte =="sim":
+        print("Não é possivel cadastrar alguem que ja tenha transporte")
+        
+    elif resposta_transporte in respostas_validas:
+        nome_user = input("digite seu nome:\n")
+        moradia_user = input("onde você mora?\n")
         print("Obrigado por responder o questionario, iremos providenciar transporte pra sua região o mais rapido possivel")
         estudante_obj = Estudante(nome_user, moradia_user, "sem transporte")
         informacoes.append(estudante_obj)
     else:
         print("resposta invalida")
-
-        
+     
 def conferir_cadastros():
     if informacoes == []:
         print("A lista esta vazia")
